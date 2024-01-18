@@ -4,6 +4,8 @@ import { Typography, Button, Link, TextField } from "@mui/material";
 import HelperTextMisaligned from "../components/TextField";
 import InputAdornments from "../components/PasswordTextField";
 import ReusableButton from "../components/Button";
+import { useRegisterMutation } from "../store/slice/userSlice";
+import { setCredentials } from "../store/slice/authSlice";
 
 function UserRegister() {
   return (
@@ -21,10 +23,10 @@ function UserRegister() {
         >
           Sign up
         </Typography>
+        <HelperTextMisaligned helperText="* Required" label="Username" />
         <HelperTextMisaligned helperText="* Required" label="Email address" />
-        <HelperTextMisaligned helperText="* Required" label="Email address" />
-        <HelperTextMisaligned helperText="* Required" label="Email address" />
-        <HelperTextMisaligned helperText="* Required" label="Email address" />
+        <HelperTextMisaligned helperText="* Required" label="Phone Number" />
+        <HelperTextMisaligned helperText="* Required" label="Address" />
         <TextField
           fullWidth
           label="Birth Date"
@@ -38,7 +40,7 @@ function UserRegister() {
           helperText="Optional"
           sx={{ width: "95%", marginLeft: "10px", marginTop: "15px" }}
         />
-        <HelperTextMisaligned helperText="* Required" label="Email address" />
+        <HelperTextMisaligned helperText="* Required" label="Gender" />
         <InputAdornments passwordLabel={"Password"} />
         <InputAdornments passwordLabel={"Confirm Password"} />
         <ReusableButton
