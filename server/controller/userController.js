@@ -16,6 +16,32 @@ const registerUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ error: "User not found" });
+    }
+
+    const validPassword = await user.matchPassword(password);
+    if (!validPassword) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    res.status(200).json({
+      message: "Login successful",
+    });
+  } catch (error) {
+    // Handle other errors
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   registerUser,
+  loginUser,
 };
