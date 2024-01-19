@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function HelperTextMisaligned({ helperText, label }) {
+export default function HelperTextMisaligned({ helperText, label, margin }) {
   return (
     <Box
       sx={{
@@ -17,7 +17,12 @@ export default function HelperTextMisaligned({ helperText, label }) {
         },
       }}
     >
-      <TextField fullWidth helperText={helperText} label={label} />
+      <TextField
+        fullWidth
+        helperText={helperText}
+        label={label}
+        margin={margin}
+      />
     </Box>
   );
 }
