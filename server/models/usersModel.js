@@ -4,10 +4,10 @@ const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
-    userName: { type: String, require: [true, "username is required."] },
+    userName: { type: String, require: [false, "username is required."] },
     email: {
       type: String,
-      require: [true, "email is required"],
+      require: [false, "email is required"],
       unique: true,
       validate: {
         validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      unique: true,
+      unique: false,
       validate: {
         validator: function (value) {
           return /^\d+$/.test(value);
@@ -27,22 +27,22 @@ const userSchema = new mongoose.Schema(
 
     address: {
       type: String,
-      required: [true, "Address is required."],
+      required: [false, "Address is required."],
     },
 
     birthDate: {
       type: Date,
-      required: [true, "Birth date is required."],
+      required: [false, "Birth date is required."],
     },
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
-      required: [true, "Gender is required."],
+      required: [false, "Gender is required."],
     },
 
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [false, "Password is required"],
       validate: {
         validator: (value) => {
           return validator.isStrongPassword(value, {
