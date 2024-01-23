@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLoginUserMutation } from "../app/query";
 import { setUser, setError } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
-import FormContainer from "./FormContainer";
+import FormContainer from "../components/FormContainer";
 import { Typography, Button, Link, TextField } from "@mui/material";
 
 const LoginForm = () => {
@@ -35,8 +35,10 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormContainer style={{ marginLeft: "10px", marginRight: "10px" }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ marginLeft: "10px", marginRight: "10px" }}>
+      <FormContainer>
         <Typography
           variant="h4"
           sx={{ textAlign: "center", marginTop: "80px", fontWeight: "bold" }}>
@@ -89,7 +91,14 @@ const LoginForm = () => {
           }}
         />
 
-        <button type="submit">Log in</button>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: "20px", bgcolor: "#82B440" }}>
+          Sign up
+        </Button>
 
         <Typography
           sx={{
@@ -111,11 +120,23 @@ const LoginForm = () => {
           or Log in with
         </Typography>
 
-        <button type="submit" className="mt-2">
-          Log with Facebook
-        </button>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: "20px", bgcolor: "#2B77E5" }}>
+          Continue with Facebook
+        </Button>
 
-        <button type="submit">Continue with Google</button>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ marginTop: "20px", bgcolor: "#FFFFFF", color: "black" }}>
+          Continue with Google
+        </Button>
 
         <Typography
           sx={{
@@ -124,7 +145,7 @@ const LoginForm = () => {
           }}>
           Dont have an account?{" "}
           <a
-            href="/user-register"
+            href="/register"
             style={{
               color: "#82B440",
             }}>

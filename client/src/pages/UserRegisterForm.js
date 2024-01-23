@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRegisterUserMutation } from "../app/query";
 import { setUser, setError } from "../features/user/userSlice";
-import FormContainer from "./FormContainer";
+import FormContainer from "../components/FormContainer";
 import { useNavigate } from "react-router-dom";
 import {
   Typography,
@@ -21,7 +21,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const [registerUser] = useRegisterUserMutation();
   const [formData, setFormData] = useState({
-    username: "",
+    userName: "",
     email: "",
     phoneNumber: "",
     address: "",
@@ -51,7 +51,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginLeft: "20px" }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ marginLeft: "10px", marginRight: "10px" }}>
       <FormContainer>
         <Typography
           variant="h4"
@@ -68,8 +70,8 @@ const RegisterForm = () => {
           fullWidth
           label="Username"
           type="text"
-          name="username"
-          value={formData.username}
+          name="userName"
+          value={formData.userName}
           onChange={handleChange}
           margin="normal"
           variant="outlined"
@@ -239,8 +241,7 @@ const RegisterForm = () => {
           type="submit"
           variant="contained"
           color="primary"
-          onClick={() => console.log("Button clicked")}
-          sx={{ marginTop: "20px" }}>
+          sx={{ marginTop: "20px", bgcolor: "#82B440" }}>
           Sign up
         </Button>
         <Typography
@@ -250,7 +251,7 @@ const RegisterForm = () => {
           }}>
           Already an account?{" "}
           <a
-            href="/user-login"
+            href="/login"
             style={{
               color: "#82B440",
             }}>

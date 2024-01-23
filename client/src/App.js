@@ -1,11 +1,10 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import RegisterForm from "./components/RegisterForm";
-import LoginForm from "./components/LoginForm";
-import UserProfile from "./components/UserProfile";
+import RegisterForm from "./pages/UserRegisterForm";
+import LoginForm from "./pages/LoginForm";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
