@@ -1,42 +1,32 @@
 const User = require("../models/usersModel");
 
 const registerUser = async (req, res) => {
-  console.log("Request Body:", { ...req.body });
   try {
-    const newUser = new User({
-      ...req.body,
-    });
-
+    const newUser = new User({ ...req.body });
     await newUser.save();
-
+    console.log("User registered successfully:", newUser);
     res.status(201).json({ message: "User registered successfully." });
   } catch (error) {
-    console.error(error);
+    console.error("Error during user registration:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(401).json({ error: "User not found" });
+    if (!user || !(await user.matchPassword(password))) {
+      console.error("Invalid credentials for user:", email);
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const validPassword = await user.matchPassword(password);
-    if (!validPassword) {
-      return res.status(401).json({ error: "Invalid email or password" });
-    }
-
-    res.status(200).json({
-      message: "Login successful",
-    });
+    console.log("Login successful for user:", email);
+    res.status(200).json({ message: "Login successful", user });
   } catch (error) {
-    // Handle other errors
-    console.error(error);
+    console.error("Error during login:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

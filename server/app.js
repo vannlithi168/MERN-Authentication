@@ -16,16 +16,13 @@ app.use(express.json());
 // CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"], // Add your required headers
-    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
   })
 );
-
-// app.js
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Use the userRoute
 app.use("/api/user", userRoute);
